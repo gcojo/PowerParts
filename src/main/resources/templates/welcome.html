@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to PowerParts</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0; /* Light silver-gray background */
+            margin: 0;
+            color: #333; /* Dark gray text */
+        }
+
+        h1 {
+            color: #4f4f4f; /* Darker silver-gray color */
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase; /* Makes the title stand out */
+            letter-spacing: 2px; /* Adds space between letters */
+        }
+
+        .btn {
+            background-color: #b0b0b0; /* Silver background */
+            color: white;
+            padding: 16px 40px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #999999; /* Darker silver for hover */
+            transform: scale(1.05); /* Slightly enlarges the button on hover */
+        }
+
+        .btn:active {
+            background-color: #8c8c8c; /* Even darker silver when button is pressed */
+            transform: scale(1); /* Resets the scale on press */
+        }
+
+        /* Adding some subtle shadow effect to make the page feel more polished */
+        .btn, h1 {
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Welcome to PowerParts</h1>
+<!-- Button to navigate to All Products page -->
+<a href="/products" class="btn">See All Products</a>
+<br>
+<a href="/warehouse/list" class="btn">Warehouse</a>
+
+</body>
+</html>

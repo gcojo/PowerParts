@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Customer</title>
+</head>
+<body>
+
+<h1>Add Customer</h1>
+
+<form action="/customers/add" method="POST">
+    <label for="name">Customer Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address"></textarea><br><br>
+
+    <button type="submit">Save Customer</button>
+</form>
+
+</body>
+</html>
