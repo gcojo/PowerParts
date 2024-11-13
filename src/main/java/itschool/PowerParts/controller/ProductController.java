@@ -28,14 +28,14 @@ public class ProductController {
     private CustomerService customerService;
 
     @GetMapping("/products/{id}")
-    public String getProduct(@PathVariable int id, Model model) {  // Use int here, not Long
+    public String getProduct(@PathVariable int id, Model model) {
         try {
             Product product = productService.getProductById(id);
             model.addAttribute("product", product);
             return "product-details";
         } catch (ProductNotFoundException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "error"; // Return an error page
+            return "error";
         }
     }
     @GetMapping
@@ -63,7 +63,7 @@ public class ProductController {
 //        if (selectedCustomer == null) {
 //            // Add error message to the model if customer is not found
 //            model.addAttribute("errorMessage", "Invalid or missing Customer ID.");
-//            return "product-form";  // Return to the product form with the error message
+//            return "product-form";
 //        }
 
         Product product = new Product();
@@ -73,7 +73,7 @@ public class ProductController {
         product.setStock(stock);
         product.setCustomer(selectedCustomer);
 
-        productService.saveProduct(product);  // Save the product
+        productService.saveProduct(product);
 
         return "redirect:/products";
     }

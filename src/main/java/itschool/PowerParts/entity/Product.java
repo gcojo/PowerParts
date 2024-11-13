@@ -13,7 +13,6 @@ import java.util.Set;
 @Getter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
