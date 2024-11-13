@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .product-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2em;
+            color: #28a745;
+        }
+
+        .description {
+            margin: 15px 0;
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/products/{id}(id=${product.id})}" method="post">
+<div class="product-container">
+    <h1 th:text="${product.name}">Product Name</h1>
+    <p class="price">$<span th:text="${product.price}">0.00</span></p>
+    <p class="description" th:text="${product.description}">Product Description</p>
+    <p>Stock: <span th:text="${product.stock}">0</span></p>
+    <p>Warehouse ID: <span th:text="${product.warehouse.id}">0</span></p>
+    <p>Warehouse Name: <span th:text="${product.warehouse.name}">N/A</span></p>
+</div>
+
+</body>
+</html>

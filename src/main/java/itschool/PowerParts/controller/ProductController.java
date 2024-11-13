@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/products")
@@ -27,21 +28,16 @@ public class ProductController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/products/{id}")
-    public String getProduct(@PathVariable int id, Model model) {
-        try {
-            Product product = productService.getProductById(id);
-            model.addAttribute("product", product);
-            return "product-details";
-        } catch (ProductNotFoundException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "error";
-        }
-    }
     @GetMapping
     public String listProducts(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
-        return "product-list";
+        try {
+            model.addAttribute("products", productService.getAllProducts());
+            return "product-list";
+        }
+     catch (ProductNotFoundException e) {
+        model.addAttribute("errorMessage", e.getMessage());
+        return "error";
+    }
     }
 
     @GetMapping("/add")
@@ -50,41 +46,32 @@ public class ProductController {
         model.addAttribute("categories", categoryService.getAllCategories());
         return "product-form";
     }
+
     @PostMapping("/add")
     public String addProduct(@RequestParam String name,
                              @RequestParam double price,
                              @RequestParam String description,
                              @RequestParam int stock,
                              @RequestParam int customerId) {
-
-
         Customer selectedCustomer = customerService.getCustomerById(customerId);
-
-//        if (selectedCustomer == null) {
-//            // Add error message to the model if customer is not found
-//            model.addAttribute("errorMessage", "Invalid or missing Customer ID.");
-//            return "product-form";
-//        }
-
         Product product = new Product();
         product.setName(name);
         product.setPrice(price);
         product.setDescription(description);
         product.setStock(stock);
         product.setCustomer(selectedCustomer);
-
         productService.saveProduct(product);
-
         return "redirect:/products";
     }
 
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") int productId) {
-        Product product = productService.getProductById(productId);
-        if (product != null) {
-            productService.deleteProduct(productId);
-        }
+        Optional<Product> optionalProduct = productService.getProductById(productId);
+
+        // Check if product exists, and delete it if present
+        optionalProduct.ifPresent(product -> productService.deleteProduct(productId));
+
         return "redirect:/products";
     }
 

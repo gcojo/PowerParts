@@ -19,4 +19,8 @@ public class Warehouse {
     @OneToMany(mappedBy = "warehouse")
     private Set<Product> products = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    private City city;
+
 }
