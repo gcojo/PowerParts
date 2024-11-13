@@ -21,7 +21,7 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();  // Get all categories from the database
+        return categoryRepository.findAll();
     }
-    // Add more business logic methods if needed
+
 }

@@ -44,13 +44,13 @@ public class Product {
 
     @ManyToMany
     @JoinTable(
-            name = "product_category",  // Join table name
-            joinColumns = @JoinColumn(name = "product_id"),  // Foreign key in product_category
-            inverseJoinColumns = @JoinColumn(name = "category_id")  // Foreign key in product_category
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "warehouse_id")  // This is the foreign key to reference the Warehouse
+    @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
 }

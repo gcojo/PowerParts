@@ -28,9 +28,9 @@ public class ProductService {
     public List<Product> getProductsByCategory(Integer categoryId) {
         Optional<Customer> customer  = customerRepository.findById(categoryId);
         if (customer.isPresent()) {
-            return productRepository.findByCustomer(customer.get());  // Fetch products by category
+            return productRepository.findByCustomer(customer.get());
         }
-        return List.of();  // Return an empty list if the category is not found
+        return List.of();
     }
 
     public void saveProduct(final Product product) {
@@ -45,6 +45,6 @@ public class ProductService {
 
 
     public Product getProductById(int id) {
-        return productRepository.findById(id).orElse(null);  // Return null if not found
+        return productRepository.findById(id).orElse(null);
     }
 }

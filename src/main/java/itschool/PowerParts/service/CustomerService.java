@@ -26,10 +26,10 @@ public class CustomerService {
     }
 
     public Customer getCustomerById(int id) {
-        return customerRepository.findById(id).orElse(null); // Return null if not found
+        return customerRepository.findById(id).orElse(null);
     }
     public Customer findByName(String customerName) {
-        return customerRepository.findByName(customerName); // Assuming you have this method in your repository
+        return customerRepository.findByName(customerName);
     }
 
 

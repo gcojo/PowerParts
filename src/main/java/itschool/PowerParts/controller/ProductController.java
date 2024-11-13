@@ -81,12 +81,11 @@ public class ProductController {
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") int productId) {
-        // Check if product exists before deleting
         Product product = productService.getProductById(productId);
         if (product != null) {
-            productService.deleteProduct(productId);  // Delete the product
+            productService.deleteProduct(productId);
         }
-        return "redirect:/products";  // Redirect back to the product list after deletion
+        return "redirect:/products";
     }
 
     @GetMapping("/list")
