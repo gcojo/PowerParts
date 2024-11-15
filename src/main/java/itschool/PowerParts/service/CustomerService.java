@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -33,5 +34,10 @@ public class CustomerService {
     }
 
 
-    // Add more business logic methods if needed
+    public List<String> getCustomerNames() {
+        List<Customer> customers = customerRepository.findAll();
+        return customers.stream()
+                .map(Customer::getName)
+                .collect(Collectors.toList());
+    }
 }

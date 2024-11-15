@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
@@ -30,5 +32,13 @@ public class CustomerController {
     public String addCustomer(@ModelAttribute Customer customer) {
         customerService.addCustomer(customer);
         return "redirect:/customers";
+    }
+
+
+    @GetMapping("/customer-names")
+    public String getCustomerNames(Model model) {
+        List<String> customerNames = customerService.getCustomerNames();
+        model.addAttribute("customerNames", customerNames);
+        return "customerName-list";
     }
 }

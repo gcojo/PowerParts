@@ -68,10 +68,7 @@ public class ProductController {
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") int productId) {
         Optional<Product> optionalProduct = productService.getProductById(productId);
-
-        // Check if product exists, and delete it if present
         optionalProduct.ifPresent(product -> productService.deleteProduct(productId));
-
         return "redirect:/products";
     }
 
