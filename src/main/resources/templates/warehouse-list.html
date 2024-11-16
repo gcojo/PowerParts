@@ -63,18 +63,21 @@
         <th>Product ID</th>
         <th>Warehouse Name</th>
         <th>Warehouse ID</th>
+        <th>City Name</th>
     </tr>
     </thead>
     <tbody>
-    <!-- Loop through each product -->
+
     <tr th:each="product : ${products}">
-        <!-- Display product name and product ID -->
+
         <td th:text="${product.name}"></td>
         <td th:text="${product.id}"></td>
 
-        <!-- Display warehouse name and warehouse ID -->
+
         <td th:text="${product.warehouse != null ? product.warehouse.name : 'No warehouse'}"></td>
         <td th:text="${product.warehouse != null ? product.warehouse.id : 'No warehouse'}"></td>
+
+        <td th:text="${product.warehouse != null && product.warehouse.city != null ? product.warehouse.city.adress : 'No city'}"></td>
     </tr>
     </tbody>
 </table>
